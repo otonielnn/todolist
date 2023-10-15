@@ -10,7 +10,7 @@ import org.springframework.beans.BeanWrapperImpl;
 
 public class Utils {
 
-    public static void copyNonNullPropertyNames(Object source, Object target) {
+    public static void copyNonNullProperties(Object source, Object target) {
         BeanUtils.copyProperties(source, target, getNullPropertyNames(source));
     }
     
@@ -22,7 +22,7 @@ public class Utils {
         Set<String> emptyNames = new HashSet<>();
 
         for(PropertyDescriptor pd: pds) {
-            Object srcValue = src.getPropertyDescriptor(pd.getName());
+            Object srcValue = src.getPropertyValue(pd.getName());
             if (srcValue == null) {
                 emptyNames.add(pd.getName());
             }
